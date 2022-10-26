@@ -115,7 +115,7 @@ class _HospitalProfilePageState extends State<HospitalProfilePage> {
               const Spacer(),
               _buildWhiteContainerButton(
                 onTap: () {},
-                child: Image.asset(AppImages.email),
+                child: Image.asset(AppImages.email,height: 24,width: 24,),
               ),
             ],
           ),
@@ -142,11 +142,11 @@ class _HospitalProfilePageState extends State<HospitalProfilePage> {
               ),
               const Spacer(),
               _buildWhiteContainerButton(
-                  child: Image.asset(AppImages.location)),
+                  child: Image.asset(AppImages.location,height: 24,width: 24,)),
               _buildWhiteContainerButton(
-                  child: Image.asset(AppImages.language)),
+                  child: Image.asset(AppImages.language,height: 24,width: 24,)),
               _buildWhiteContainerButton(
-                  child: Image.asset(AppImages.facebook)),
+                  child: Image.asset(AppImages.facebook,height: 24,width: 24,)),
             ],
           )
         ],

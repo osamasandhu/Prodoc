@@ -6,9 +6,11 @@ class DropDownWidget extends StatefulWidget {
   final List<String> list;
   final String? select;
   final String hint;
+  final InputBorder? roundBorder;
 
   const DropDownWidget({
     Key? key,
+    this.roundBorder,
     required this.list,
     required this.hint,
     required this.select,
