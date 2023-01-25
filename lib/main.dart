@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:prodoc/src/ui/pages/home_page.dart';
 import 'package:prodoc/src/ui/pages/hospital_page/hospital_profile_page.dart';
-import 'package:prodoc/src/ui/pages/splash_screen.dart';
+import 'package:prodoc/src/ui/pages/on_boarding_page.dart';
+import 'package:prodoc/src/utils/app_utils.dart';
 import 'package:prodoc/src/utils/theme.dart';
 
 void main() {
@@ -20,10 +21,9 @@ class MyApp extends StatelessWidget {
         textTheme: GoogleFonts.poppinsTextTheme(),
       ),
       debugShowCheckedModeBanner: false,
-      // home: const HomePage(),
-      home: const HomePage(
-
-      ),
+      // home: HospitalProfilePage(),
+      // home: const OnBoardingPage(),
+      home: const HomePage(userType: UserType.admin),
     );
   }
 }

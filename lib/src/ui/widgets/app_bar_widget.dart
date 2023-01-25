@@ -5,6 +5,7 @@ import 'package:prodoc/src/utils/color.dart';
 class AppBarWidget extends StatelessWidget implements PreferredSize {
   AppBarWidget({
     Key? key,
+    this.centerTitle,
     required this.title,
     this.backgroundColor,
     // this.backgroundColor = AppColors.blueColor,
@@ -12,6 +13,7 @@ class AppBarWidget extends StatelessWidget implements PreferredSize {
     this.showNotificationDot = true,
   }) : super(key: key);
 
+  final bool? centerTitle;
   final String title;
   final Color? backgroundColor;
   final Widget? action;
@@ -20,10 +22,14 @@ class AppBarWidget extends StatelessWidget implements PreferredSize {
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      centerTitle: centerTitle ?? false,
       backgroundColor: backgroundColor ?? AppColors.blueColor,
       title: Text(
         title,
-        style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 16),
+        style: const TextStyle(
+          fontWeight: FontWeight.w600,
+          fontSize: 16,
+        ),
       ),
       actions: [
         Padding(

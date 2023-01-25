@@ -27,4 +27,20 @@ class AppImages {
   static const accreditationLogo1 = '$_images/acc_logo1.png';
   static const mediaHospital = '$_images/media_hospital.png';
   static const insurancePolicies = '$_images/policies.png';
+
+///New
+  static const servicesLogo = '$_images/services.png';
+  static const referBottomLogo = '$_images/refer_bottom.png';
+  static const createReferLogo = '$_images/create_refer.png';
+  static const homeLogo = '$_images/home.png';
+  static const communityLogo = '$_images/community.png';
+  static const taskLogo = '$_images/task.png';
+  static const manageLogo = '$_images/manage.png';
+  static const communityComingSoon = '$_images/community_coming_soon.png';
+  static const servicesComingSoon = '$_images/services_coming_soon.png';
+  static const sortLogo = '$_images/sort_logo.png';
+  static const healthCard = '$_images/health_card.png';
+  static const hospitalBuilding = '$_images/hospital_building.png';
+
+
  }

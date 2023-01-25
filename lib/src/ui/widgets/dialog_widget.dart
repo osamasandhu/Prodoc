@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 
 class CustomPermissionDialog extends StatelessWidget {
- final List<Widget> children;
+  final List<Widget> children;
+  final EdgeInsetsGeometry? padding;
 
-  const CustomPermissionDialog({super.key, required this.children});
+  const CustomPermissionDialog(
+      {super.key, required this.children, this.padding});
 
   @override
   Widget build(BuildContext context) {
@@ -12,10 +14,11 @@ class CustomPermissionDialog extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
             color: Colors.white, borderRadius: BorderRadius.circular(20)),
-        padding: const EdgeInsets.symmetric(
-          horizontal: 16,
-          vertical: 32,
-        ),
+        padding: padding ??
+            const EdgeInsets.symmetric(
+              horizontal: 16,
+              vertical: 32,
+            ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,

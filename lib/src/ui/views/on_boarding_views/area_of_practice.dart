@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:prodoc/src/ui/views/on_boarding_views/your_detail.dart';
 import 'package:prodoc/src/ui/widgets/text.dart';
+import 'package:prodoc/src/utils/app_utils.dart';
 import 'package:prodoc/src/utils/color.dart';
 
 class AreaOfPracticeView extends StatefulWidget {
-final  double? padding;
+  final double? padding;
 
   const AreaOfPracticeView({Key? key, this.padding}) : super(key: key);
 
@@ -20,14 +21,16 @@ class _AreaOfPracticeViewState extends State<AreaOfPracticeView> {
       children: [
         cityTownNameWidget(),
         _citiesListWidget(),
-        selectedCities.isEmpty ? const SizedBox() : searchField(),
-        selectedCities.isEmpty
+        DropDownListUtils.selectedCities.isEmpty
+            ? const SizedBox()
+            : searchField(),
+        DropDownListUtils.selectedCities.isEmpty
             ? const SizedBox()
             : _textWidget(text: 'Your selected cities/towns'),
         const SizedBox(
           height: 20,
         ),
-        for (int i = 0; i < selectedCities.length; i++)
+        for (int i = 0; i < DropDownListUtils.selectedCities.length; i++)
           selectedCitiesWidget(i: i)
       ],
     );
@@ -60,34 +63,40 @@ class _AreaOfPracticeViewState extends State<AreaOfPracticeView> {
       runSpacing: 10,
       spacing: 10,
       children: [
-        for (int j = 0; j < cities.length; j++)
+        for (int j = 0; j < DropDownListUtils.cities.length; j++)
           InkWell(
             child: Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(16),
-                color: selectedCities.contains(cities[j])
+                color: DropDownListUtils.selectedCities
+                        .contains(DropDownListUtils.cities[j])
                     ? AppColors.blueColor
                     : null,
                 border: Border.all(color: AppColors.blueColor),
               ),
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
               child: Text(
-                cities[j],
+                DropDownListUtils.cities[j],
                 style: TextStyle(
-                  color: selectedCities.contains(cities[j])
+                  color: DropDownListUtils.selectedCities
+                          .contains(DropDownListUtils.cities[j])
                       ? Colors.white
                       : Colors.black,
                 ),
               ),
             ),
             onTap: () {
-              if (selectedCities.contains(cities[j])) {
-                selectedCities.remove(cities[j]);
+              if (DropDownListUtils.selectedCities
+                  .contains(DropDownListUtils.cities[j])) {
+                DropDownListUtils.selectedCities
+                    .remove(DropDownListUtils.cities[j]);
                 setState(() {});
               } else {
-                if (selectedCities.length < 5) {
-                  if (!selectedCities.contains(cities[j])) {
-                    selectedCities.add(cities[j]);
+                if (DropDownListUtils.selectedCities.length < 5) {
+                  if (!DropDownListUtils.selectedCities
+                      .contains(DropDownListUtils.cities[j])) {
+                    DropDownListUtils.selectedCities
+                        .add(DropDownListUtils.cities[j]);
                     setState(() {});
                   }
                 }
@@ -133,13 +142,13 @@ class _AreaOfPracticeViewState extends State<AreaOfPracticeView> {
         children: [
           Expanded(
             child: Text(
-              selectedCities[i],
+              DropDownListUtils.selectedCities[i],
               style: const TextStyle(fontWeight: FontWeight.w400, fontSize: 14),
             ),
           ),
           InkWell(
               onTap: () {
-                selectedCities.removeAt(i);
+                DropDownListUtils.selectedCities.removeAt(i);
                 setState(() {});
               },
               child: const Icon(Icons.cancel_outlined))
@@ -147,22 +156,4 @@ class _AreaOfPracticeViewState extends State<AreaOfPracticeView> {
       ),
     );
   }
-
-  List<String> cities = [
-    'City A',
-    'Town B',
-    'City/town Abc',
-    'Town I',
-    'City/town xyz',
-    'City E',
-    'Town F',
-    'City/town ghf',
-    'Town h',
-    'City/town faf',
-  ];
-  List<String> selectedCities = [
-    'City A',
-    'City/town faf',
-    'Town h',
-  ];
 }

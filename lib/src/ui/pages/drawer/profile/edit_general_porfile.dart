@@ -5,8 +5,8 @@ import 'package:prodoc/src/ui/widgets/drawer_page_body.dart';
 import 'package:prodoc/src/ui/widgets/drop_down.dart';
 import 'package:prodoc/src/ui/widgets/text.dart';
 import 'package:prodoc/src/ui/widgets/text_field.dart';
+import 'package:prodoc/src/utils/app_utils.dart';
 import 'package:prodoc/src/utils/color.dart';
-import 'package:prodoc/src/utils/const.dart';
 
 class EditGeneralProfilePage extends StatefulWidget {
   const EditGeneralProfilePage({Key? key}) : super(key: key);
@@ -36,7 +36,7 @@ class _EditGeneralProfilePageState extends State<EditGeneralProfilePage> {
         children: [
           const LabelText(text: 'Your title *'),
           DropDownWidget(
-            list: titleDropDownList,
+            list: DropDownListUtils.titleDropDownList,
             select: title,
             hint: 'Select your title',
           ),
@@ -47,7 +47,7 @@ class _EditGeneralProfilePageState extends State<EditGeneralProfilePage> {
           ),
           const LabelText(text: 'Gender'),
           DropDownWidget(
-            list: genderDropDownList,
+            list: DropDownListUtils.titleDropDownList,
             select: gender,
             hint: 'Select your gender',
           ),

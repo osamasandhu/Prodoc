@@ -1,8 +1,12 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:prodoc/src/ui/pages/drawer/profile/profile_page.dart';
-import 'package:prodoc/src/ui/pages/hospital_page/hospital_blog_detail_page.dart';
 import 'package:prodoc/src/ui/pages/hospital_page/hospital_profile_consultants_associated.dart';
+import 'package:prodoc/src/ui/views/sliders/doctor_slider.dart';
+import 'package:prodoc/src/ui/views/sliders/insurance_slider.dart';
+import 'package:prodoc/src/ui/views/sliders/media_slider.dart';
+import 'package:prodoc/src/ui/views/sliders/our_blog_slider.dart';
+import 'package:prodoc/src/ui/widgets/page_view_widgets.dart';
 import 'package:prodoc/src/ui/widgets/text.dart';
 import 'package:prodoc/src/utils/color.dart';
 import 'package:prodoc/src/utils/const.dart';
@@ -115,7 +119,11 @@ class _HospitalProfilePageState extends State<HospitalProfilePage> {
               const Spacer(),
               _buildWhiteContainerButton(
                 onTap: () {},
-                child: Image.asset(AppImages.email,height: 24,width: 24,),
+                child: Image.asset(
+                  AppImages.email,
+                  height: 24,
+                  width: 24,
+                ),
               ),
             ],
           ),
@@ -142,11 +150,23 @@ class _HospitalProfilePageState extends State<HospitalProfilePage> {
               ),
               const Spacer(),
               _buildWhiteContainerButton(
-                  child: Image.asset(AppImages.location,height: 24,width: 24,)),
+                  child: Image.asset(
+                AppImages.location,
+                height: 24,
+                width: 24,
+              )),
               _buildWhiteContainerButton(
-                  child: Image.asset(AppImages.language,height: 24,width: 24,)),
+                  child: Image.asset(
+                AppImages.language,
+                height: 24,
+                width: 24,
+              )),
               _buildWhiteContainerButton(
-                  child: Image.asset(AppImages.facebook,height: 24,width: 24,)),
+                  child: Image.asset(
+                AppImages.facebook,
+                height: 24,
+                width: 24,
+              )),
             ],
           )
         ],
@@ -285,307 +305,14 @@ class _HospitalProfilePageDataState extends State<_HospitalProfilePageData> {
             showConsultants ? _buildConsultantGrid() : const SizedBox(),
             showConsultants ? const SizedBox() : const Divider(height: 30),
             _buildGreen16SizeText(title: 'Media'),
-            _buildMediaSlider(),
-            _buildDoctorsSlider(),
-            _buildPageViewDots(
-                currentPage: _doctorCurrentPage, listLength: doctorList.length),
-            const SizedBox(
-              height: 40,
-            ),
+            const MediaSlider(), // _buildMediaSlider(),
+            const DoctorSlider(),
             _buildGreen16SizeText(title: 'Our Blogs'),
-            _buildBlogsSlider(),
+            const OurBlogSlider(),
             _buildGreen16SizeText(title: 'Insurance policies'),
-            _buildInsurancePolicies(),
+            const InsuranceSlider()
           ],
         ),
-      ),
-    );
-  }
-
-  final _mediaPageController = PageController(initialPage: 0);
-  final _doctorPageController = PageController(initialPage: 0);
-  final _blogsPageController =
-      PageController(initialPage: 0, viewportFraction: 0.8);
-  final _insurancePageController =
-      PageController(initialPage: 0, viewportFraction: 0.8);
-  int _policiesCurrentPage = 0;
-  int _mediaCurrentPage = 0;
-  int _blogsCurrentPage = 0;
-  int _doctorCurrentPage = 0;
-
-  Widget _buildMediaSlider() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 24),
-      child: _elevatedContainer(
-          child: Column(
-        children: [
-          SizedBox(
-            height: 330,
-            child: PageView.builder(
-              physics: const BouncingScrollPhysics(),
-              controller: _mediaPageController,
-              onPageChanged: (page) => setState(
-                () => _mediaCurrentPage = page,
-              ),
-              itemBuilder: (c, i) {
-                return Image.asset(AppImages.mediaHospital);
-              },
-              itemCount: mediaList.length,
-            ),
-          ),
-          _buildPageViewDots(
-              currentPage: _mediaCurrentPage, listLength: mediaList.length)
-        ],
-      )),
-    );
-  }
-
-  Widget _buildDoctorsSlider() {
-    return SizedBox(
-      height: 150,
-      child: Padding(
-        padding: const EdgeInsets.only(
-          top: 35,
-        ),
-        child: PageView.builder(
-          physics: const BouncingScrollPhysics(),
-          controller: _doctorPageController,
-          onPageChanged: (page) => setState(
-            () => _doctorCurrentPage = page,
-          ),
-          itemBuilder: (c, i) {
-            return Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 5),
-              child: _elevatedContainer(
-                  padding: const EdgeInsets.all(10),
-                  child: Row(
-                    children: [
-                      Container(
-                        width: 94.15,
-                        height: 94.15,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            border: Border.all(color: AppColors.blueColor)),
-                        child: Image.asset(AppImages.onlineDoctor),
-                      ),
-                      const SizedBox(
-                        width: 16,
-                      ),
-                      Expanded(
-                          child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: const [
-                          Expanded(
-                            child: Font14Weight400(
-                                text: 'Lead Consultant', fontSize: 10),
-                          ),
-                          Expanded(
-                            child: Font14Weight500Blue(
-                              text: 'Dr. Seema Deshmukh',
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                          SizedBox(
-                            height: 6,
-                          ),
-                          Expanded(
-                            child: Font14Weight400(
-                              text: 'Lead Consultant',
-                              fontSize: 12,
-                              fontWeight: FontWeight.w300,
-                            ),
-                          ),
-                          Spacer(),
-                          Expanded(
-                            child: Font14Weight400(
-                              text: 'Orthopedic',
-                              fontSize: 12,
-                              fontWeight: FontWeight.w400,
-                            ),
-                          ),
-                        ],
-                      )),
-                    ],
-                  )),
-            );
-          },
-          itemCount: doctorList.length,
-        ),
-      ),
-    );
-  }
-
-  Widget _buildBlogsSlider() {
-    return SizedBox(
-      height: 410,
-      child: PageView.builder(
-        physics: const BouncingScrollPhysics(),
-        controller: _blogsPageController,
-        onPageChanged: (page) => setState(
-          () => _blogsCurrentPage = page,
-        ),
-        itemBuilder: (c, i) {
-          return InkWell(
-            onTap: () {
-              AppNavigation.to(
-                context,
-                const HospitalBlogDetailPage(),
-              );
-            },
-            child: Padding(
-              padding: const EdgeInsets.all(5),
-              child: _elevatedContainer(
-                  padding: EdgeInsets.zero,
-                  child: Column(
-                    children: [
-                      ClipRRect(
-                        borderRadius: const BorderRadius.only(
-                          topLeft: Radius.circular(24),
-                          topRight: Radius.circular(24),
-                        ),
-                        child: Image.asset(
-                          AppImages.hospitalBlog,
-                          height: 186,
-                          width: MediaQuery.of(context).size.width,
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                      Padding(
-                        padding:
-                            const EdgeInsets.only(top: 20, right: 16, left: 16),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Font14Weight500Blue(
-                              text: 'Conditions Treated with Arthroscopy',
-                              textColor: AppColors.greenColor,
-                            ),
-                            Font14Weight400(
-                              padding: const EdgeInsets.symmetric(vertical: 5),
-                              text: 'August 10, 2022',
-                              fontSize: 10,
-                              textColor: AppColors.greyText,
-                            ),
-                            RichText(
-                              text: TextSpan(
-                                text: loremIpsum.length < 120
-                                    ? loremIpsum + loremIpsum + loremIpsum
-                                    : loremIpsum.substring(0, 120),
-                                style: const TextStyle(
-                                    overflow: TextOverflow.ellipsis,
-                                    height: 1.3,
-                                    fontWeight: FontWeight.w400,
-                                    fontSize: 12,
-                                    color: Colors.black),
-                                children: [
-                                  TextSpan(
-                                    recognizer: TapGestureRecognizer()
-                                      ..onTap = () {},
-                                    text: 'Know more',
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.w600,
-                                      color: AppColors.greenColor,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      )
-                    ],
-                  )),
-            ),
-          );
-        },
-      ),
-    );
-  }
-
-  Widget _buildInsurancePolicies() {
-    return SizedBox(
-      height: 200,
-      child: PageView.builder(
-        physics: const BouncingScrollPhysics(),
-        controller: _insurancePageController,
-        onPageChanged: (page) => setState(
-          () => _policiesCurrentPage = page,
-        ),
-        itemBuilder: (c, i) {
-          return InkWell(
-            onTap: () {},
-            child: Padding(
-                padding: const EdgeInsets.all(5),
-                child: _elevatedContainer(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 12, vertical: 16),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(
-                          width: 72,
-                          height: 72,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              border: Border.all(color: AppColors.greenColor)),
-                          child: Image.asset(AppImages.insurancePolicies),
-                        ),
-                        const SizedBox(
-                          width: 16,
-                        ),
-                        Expanded(
-                            child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const Font14Weight400(
-                                text: 'Insurance provider name', fontSize: 10),
-                            const SizedBox(
-                              height: 4,
-                            ),
-                            Font14Weight500Blue(
-                              text: 'Insurance name',
-                              textColor: AppColors.greenColor,
-                              fontWeight: FontWeight.w600,
-                            ),
-                            const SizedBox(
-                              height: 6,
-                            ),
-                            Expanded(
-                              child: Text(
-                                loremIpsum + loremIpsum,
-                                maxLines: 6,
-                                style: const TextStyle(
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.w400,
-                                ),
-                              ),
-                            ),
-                          ],
-                        )),
-                      ],
-                    ))),
-          );
-        },
-      ),
-    );
-  }
-
-  _buildPageViewDots({required int currentPage, required int listLength}) {
-    return Padding(
-      padding: const EdgeInsets.only(top: 30),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          for (int i = 0; i < listLength; i++)
-            Padding(
-              padding: const EdgeInsets.only(right: 5),
-              child: CircleAvatar(
-                radius: 5,
-                backgroundColor:
-                    currentPage == i ? AppColors.blueColor : AppColors.greyText,
-              ),
-            )
-        ],
       ),
     );
   }
@@ -619,26 +346,15 @@ class _HospitalProfilePageDataState extends State<_HospitalProfilePageData> {
     );
   }
 
-  List mediaList = ['1', '1', '1', '1', '1', '1'];
-  List doctorList = [
-    '1',
-    '1',
-    '1',
-    '1',
-    '1',
-    '1',
-    '1',
-    '1',
-    '1',
-  ];
-
   Widget _gridContainer({
     required String count,
     required String title,
     VoidCallback? onTap,
   }) {
     return InkWell(
-        child: _elevatedContainer(
+        child: ElevatedContainer(
+            padding: const EdgeInsets.all(5),
+            onTap: onTap,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
@@ -658,28 +374,7 @@ class _HospitalProfilePageDataState extends State<_HospitalProfilePageData> {
                     fontSize: 10,
                     textAlign: TextAlign.center),
               ],
-            ),
-            onTap: onTap));
-  }
-
-  Widget _elevatedContainer({
-    required Widget child,
-    VoidCallback? onTap,
-    EdgeInsetsGeometry? padding,
-  }) {
-    return InkWell(
-      onTap: onTap,
-      child: Container(
-        padding: padding ?? const EdgeInsets.symmetric(vertical: 24),
-        decoration: BoxDecoration(boxShadow: [
-          BoxShadow(
-              color: AppColors.greyText.withOpacity(0.2),
-              spreadRadius: 1,
-              blurRadius: 5)
-        ], borderRadius: BorderRadius.circular(24), color: Colors.white),
-        child: child,
-      ),
-    );
+            )));
   }
 
   Widget _buildFacilitiesGrid() {

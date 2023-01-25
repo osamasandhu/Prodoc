@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:prodoc/src/ui/views/on_boarding_views/your_detail.dart';
 import 'package:prodoc/src/ui/widgets/drop_down.dart';
 import 'package:prodoc/src/ui/widgets/text.dart';
+import 'package:prodoc/src/utils/app_utils.dart';
 
 class YourQualificationsView extends StatefulWidget {
   const YourQualificationsView({Key? key}) : super(key: key);
@@ -12,13 +13,6 @@ class YourQualificationsView extends StatefulWidget {
 
 class _YourQualificationsViewState extends State<YourQualificationsView> {
   String? degree;
-  List<String> degreeList = <String>[
-    "MBBS",
-    "BAMS",
-    "BHMS",
-    "BDS.",
-    "Other",
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +20,7 @@ class _YourQualificationsViewState extends State<YourQualificationsView> {
       children: [
         const LabelText(text: 'Graduation'),
         DropDownWidget(
-          list: degreeList,
+          list: DropDownListUtils.degreeList,
           select: degree,
           hint: 'Select your degree',
         ),
@@ -37,12 +31,11 @@ class _YourQualificationsViewState extends State<YourQualificationsView> {
           hint: 'Select your specialization',
         ),
         const LabelText(text: 'Super specialization (if applicable)'),
-        DropDownWidget(
+        const DropDownWidget(
           list: [],
           select: '',
           hint: 'Select super specialization',
         ),
-
       ],
     );
   }

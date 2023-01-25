@@ -34,6 +34,7 @@ dependencies:
   google_fonts:
   image_picker:
   dotted_border:
+  dropdown_button2:
   app_settings:
   location:
   intl:

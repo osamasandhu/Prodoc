@@ -9,6 +9,7 @@ import 'package:prodoc/src/ui/widgets/buttons.dart';
 import 'package:prodoc/src/ui/widgets/dialog_widget.dart';
 import 'package:prodoc/src/ui/widgets/logo_container.dart';
 import 'package:prodoc/src/ui/widgets/text.dart';
+import 'package:prodoc/src/utils/app_utils.dart';
 import 'package:prodoc/src/utils/color.dart';
 import 'package:prodoc/src/utils/images.dart';
 import 'package:prodoc/src/utils/nav.dart';
@@ -65,7 +66,12 @@ class _WelcomePageState extends State<WelcomePage> {
           bool locationOn = await location.serviceEnabled();
 
           locationOn
-              ? AppNavigation.to(context, const HomePage())
+              ? AppNavigation.to(
+                  context,
+                  const HomePage(
+                    userType: UserType.pro,
+                  ),
+                )
               : locationPermission(
                   title:
                       'For a better experience, please turn on your device location.',
@@ -75,10 +81,16 @@ class _WelcomePageState extends State<WelcomePage> {
                         title:
                             'Please note, you won’t be able to use some features of the app.',
                         popButton: () {
-                          AppNavigation.pop(context);
+                          AppNavigation.to(
+                            context,
+                            const HomePage(
+                              userType: UserType.create,
+                            ),
+                          );
                         },
                         popButtonText: 'OKAY');
                   },
+
                   popButtonText: 'CANCEL');
         },
       ),
@@ -132,7 +144,8 @@ class _WelcomePageState extends State<WelcomePage> {
   }
 
   Widget textWidget({required String text}) {
-    return Font14Weight400(textAlign: TextAlign.center,
+    return Font14Weight400(
+      textAlign: TextAlign.center,
       text: text,
       padding: const EdgeInsets.symmetric(horizontal: 24),
     );

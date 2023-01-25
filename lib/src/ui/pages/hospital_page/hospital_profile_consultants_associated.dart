@@ -9,10 +9,9 @@ import 'package:prodoc/src/ui/widgets/app_bar_widget.dart';
 import 'package:prodoc/src/utils/color.dart';
 
 class HospitalConsultantPage extends StatefulWidget {
-  final int page;
+  final int? page;
 
-  const HospitalConsultantPage({super.key, required this.page});
-
+  const HospitalConsultantPage({super.key, this.page});
 
   @override
   State<HospitalConsultantPage> createState() => _HospitalConsultantPageState();
@@ -25,17 +24,20 @@ class _HospitalConsultantPageState extends State<HospitalConsultantPage>
   @override
   void initState() {
     super.initState();
-    tabController = TabController(length: 6, vsync: this,initialIndex: widget.page);
+    tabController =
+        TabController(length: 6, vsync: this, initialIndex: widget.page ?? 0);
   }
+
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return   Scaffold(
       appBar: AppBarWidget(
         title: 'Consultants associated',
         backgroundColor: AppColors.greenColor,
       ),
-      body: Column(
+      body:
+      Column(
         children: [
           const SizedBox(
             height: 30,

@@ -71,6 +71,7 @@ class _DeleteAccountPageState extends State<DeleteAccountPage> {
               Expanded(
                 child: OutLineButtonWidget(
                   text: 'Delete',
+
                   onPressed: () {
                     CustomPermissionDialog(
                       children: [
@@ -105,8 +106,8 @@ class _DeleteAccountPageState extends State<DeleteAccountPage> {
                               onPressed: () async {
                                 AppNavigation.pop(context);
 
-                                CustomPermissionDialog(
-                                  children: const [
+                                const CustomPermissionDialog(
+                                  children: [
                                     Font14Weight400(
                                         text:
                                             'Your request has been submitted. You will be logged out of the account in sometime and will not be able to sign in again.'),
@@ -133,8 +134,8 @@ class _DeleteAccountPageState extends State<DeleteAccountPage> {
                   child: DrawerPagesBottomBUtton(
                 text: 'Deactivate',
                 onPressed: () {
-                  CustomPermissionDialog(
-                    children: const [
+                  const CustomPermissionDialog(
+                    children: [
                       Font14Weight400(
                           text:
                               'Your account will be deactivated temporarily in a few minutes. To  get back on Prodoc log in to your account anytime after 24 hours.'),

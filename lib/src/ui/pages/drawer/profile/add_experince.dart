@@ -5,6 +5,7 @@ import 'package:prodoc/src/ui/widgets/check_box_widget.dart';
 import 'package:prodoc/src/ui/widgets/drawer_page_body.dart';
 import 'package:prodoc/src/ui/widgets/text.dart';
 import 'package:prodoc/src/ui/widgets/text_field.dart';
+import 'package:prodoc/src/utils/app_utils.dart';
 import 'package:prodoc/src/utils/color.dart';
 
 import '../../../widgets/drop_down.dart';
@@ -24,16 +25,7 @@ class _AddExperinceState extends State<AddExperince> {
   DateTime? endDate;
   bool isChecked = false;
   String? organizationType;
-  List<String> organizationTypeList = <String>[
-    "Government institution",
-    "Super-speciality hospital",
-    "Multi-speciality hospital",
-    "Single-speciality hospital",
-    "Private clinic",
-    "Labs/radiology center",
-    "Medical educational institution",
-    "Other",
-  ];
+
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +40,7 @@ class _AddExperinceState extends State<AddExperince> {
         ),
         const LabelText(text: 'Organization type *'),
         DropDownWidget(
-          list: organizationTypeList,
+          list: DropDownListUtils.organizationTypeList,
           select: organizationType,
           hint: 'Select organization type',
         ),

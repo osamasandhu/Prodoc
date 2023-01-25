@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:prodoc/src/ui/widgets/drop_down.dart';
 import 'package:prodoc/src/ui/widgets/text.dart';
 import 'package:prodoc/src/ui/widgets/text_field.dart';
-import 'package:prodoc/src/utils/const.dart';
+import 'package:prodoc/src/utils/app_utils.dart';
 
 class YourDetailsView extends StatefulWidget {
   const YourDetailsView({Key? key}) : super(key: key);
@@ -24,7 +24,7 @@ class _YourDetailsViewState extends State<YourDetailsView> {
       children: [
         const LabelText(text: 'Your title *'),
         DropDownWidget(
-          list: titleDropDownList,
+          list: DropDownListUtils.titleDropDownList,
           select: title,
           hint: 'Select your title',
         ),
@@ -35,7 +35,7 @@ class _YourDetailsViewState extends State<YourDetailsView> {
         ),
         const LabelText(text: 'Gender *'),
         DropDownWidget(
-          list: genderDropDownList,
+          list: DropDownListUtils.titleDropDownList,
           select: gender,
           hint: 'Select your title',
         ),
